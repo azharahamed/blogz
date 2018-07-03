@@ -15,18 +15,19 @@
   </div>
   <h1 style="text-align: center">Build A Blog</h1>
     <table style="text-align: left">
-    <form id="newblog-form" action="/addblog" method="POST">
+    <form id="newblog-form" action="/editpost" method="POST">
+      <input type="hidden" name="id" value="{{ blog.id }}">
       <tr>
-        <th><label for="title">Title for your new blog: </label></th>
-        <th><input type="text" name="title"></th>
+        <th><label for="title">Title</label></th>
+        <th><input type="text" name="title" value="{{ blog.title }}"></th>
       </tr>
       <tr>
-        <th><label for="content">Your new blog: </label></th>
-        <th><textarea name="content" form="newblog-form"></textarea></th>
+        <th><label for="content">Contents</label></th>
+        <th><textarea name="content" form="newblog-form">{{ blog.content }}</textarea></th>
       </tr>      
       <tr>
         <th></th>
-        <th><input type="submit" name="Add Entry"></th>
+        <th><input type="submit" name="Add Entry" value="Update"></th>
       </tr>
   </form>
   </table>

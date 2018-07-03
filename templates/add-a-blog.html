@@ -1,0 +1,25 @@
+<!<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Add a blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="main.js"></script>
+</head>
+<body>
+  <div id= "navbar">
+    <a href="/">Main Page</a> | 
+    <a href="/newpost">New Post</a>
+  </div>
+  <h1 style="text-align: center">Build A Blog</h1>
+    <form id="newblog-form" action="/addblog" method="POST">
+      <label for="title">Title for your new blog: </label>
+      <input type="text" name="title">
+      <label for="content">Your new blog: </label>
+      <textarea name="content" form="newblog-form"></textarea>
+      <input type="submit" name="Add Entry">
+    </form>
+</body>
+</html>

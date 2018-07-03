@@ -28,4 +28,3 @@ For both use cases we need to create the template for the page that will display
 
 But first, a reminder! It's been a little while since we used query params and GET requests, so it will be a useful reference and review to look at the lesson Forms in Flask, especially the section Accessing Get Request Parameters.
 
-Use Case 1

@@ -7,6 +7,32 @@
   <title>Signup</title>
 </head>
 <body>
-  
+      <div id= "navbar">
+        <a href="/">Main Page</a> | 
+        <a href="/newpost">New Post</a> |
+        <a href="/login">Login</a> |
+        <a href="/logout">Logout</a>
+      </div>
+      <h1>Signup</h1>
+      <table style="text-align: left">
+      <form method="POST" id="login-form" action="/signup">
+        <tr>
+            <th><label for="username">Username</label></th>
+            <th><input type="text" name="username"></th>
+          </tr>
+          <tr>
+            <th><label for="password">Password</label></th>
+            <th><input type="password" name="password"></th>
+          </tr>
+          <tr>
+              <th><label for="verify">Verify Password</label></th>
+              <th><input type="verify" name="password"></th>
+            </tr>      
+          <tr>
+            <th></th>
+            <th><input type="submit" name="submit"></th>
+          </tr>
+      </form>
+      </table>
 </body>
 </html>

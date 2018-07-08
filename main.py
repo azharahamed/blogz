@@ -7,6 +7,7 @@ app = Flask(__name__)
 app.config['DEBUG'] = False
 app.config['ENV'] = 'development'
 app.config['SQLALCHEMY_ECHO'] = True
+app.config['SQLALCEMY_TRACK_MODIFICATIONS'] = False
 
 connection_string = f'mysql+pymysql://{username}:{password}@{host}:{port}/{database}'
 app.config['SQLALCHEMY_DATABASE_URI'] = connection_string
@@ -18,6 +19,7 @@ class Blog(db.Model):
   title = db.Column(db.String(140))
   content = db.Column(db.Text)
   created_at = db.Column(db.DateTime, default=datetime.now())
+  created_by = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
   @classmethod
   def all(cls, order_by=None):
@@ -31,6 +33,13 @@ class Blog(db.Model):
   @classmethod
   def get(cls,id):
     return cls.query.get(id)
+
+class Users(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  username = db.Column(db.String(40))
+  password = db.Column(db.String(40))
+
+  blogs = db.relationship('Blog',backref='users')
 
 @app.route("/")
 def index():

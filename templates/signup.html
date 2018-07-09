@@ -14,6 +14,9 @@
         <a href="/logout">Logout</a>
       </div>
       <h1>Signup</h1>
+      {% if errormsg %}
+      <p style="color:red">{{ errormsg }}</p>
+      {% endif %}
       <table style="text-align: left">
       <form method="POST" id="login-form" action="/signup">
         <tr>
@@ -25,8 +28,8 @@
             <th><input type="password" name="password"></th>
           </tr>
           <tr>
-              <th><label for="verify">Verify Password</label></th>
-              <th><input type="verify" name="password"></th>
+              <th><label for="verifypassword">Verify Password</label></th>
+              <th><input type="password" name="verifypassword"></th>
             </tr>      
           <tr>
             <th></th>

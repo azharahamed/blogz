@@ -14,6 +14,9 @@
     <a href="/logout">Logout</a>
   </div>
   <h1>Login</h1>
+  {% if errormsg %}
+      <p style="color:red">{{ errormsg }}</p>
+  {% endif %}
   <table style="text-align: left">
   <form method="POST" id="login-form" action="/login">
       <tr>

@@ -7,6 +7,32 @@
   <title>Login</title>
 </head>
 <body>
-  
+  <div id= "navbar">
+    <a href="/">Main Page</a> | 
+    <a href="/newpost">New Post</a> |
+    <a href="/login">Login</a> |
+    <a href="/logout">Logout</a>
+  </div>
+  <h1>Login</h1>
+  {% if errormsg %}
+      <p style="color:red">{{ errormsg }}</p>
+  {% endif %}
+  <table style="text-align: left">
+  <form method="POST" id="login-form" action="/login">
+      <tr>
+        <th><label for="username">Username</label></th>
+        <th><input type="text" name="username"></th>
+      </tr>
+      <tr>
+        <th><label for="password">Password</label></th>
+        <th><input type="password" name="password"></th>
+      </tr>      
+      <tr>
+        <th></th>
+        <th><input type="submit" name="submit"></th>
+      </tr>
+  </form>
+  </table>
+  <p>Don't have an account? <a href="/signup">Create one!</a></p>
 </body>
 </html>

@@ -2,6 +2,7 @@ from flask import Flask, request, redirect, render_template, session
 from flask_sqlalchemy import SQLAlchemy
 from config import username, password, host, port, database, app_secret_key
 from datetime import datetime
+import hashlib
 
 app = Flask(__name__)
 app.config['DEBUG'] = False
@@ -65,7 +66,6 @@ def blog():
     blog = Blog.get(_id)
     user = Users.get(blog.created_by)
     errormsg = request.args.get('error')
-    print(f"###########Error MEssage *********{errormsg}")
     return render_template("blogdetails.html",blog=blog,username=user.username,errormsg=errormsg)
   
   elif(request.args.get('user')):
@@ -91,7 +91,11 @@ def signup():
       if (requested_password == confirm_password):
         newuser = Users()
         newuser.username = requested_username
-        newuser.password = request.form.get('password')
+        h = hashlib.new('md5')
+        usr_psswd = bytes(request.form.get('password'),'utf-8')
+        h.update(usr_psswd)
+        encrypted_password = h.hexdigest()
+        newuser.password = encrypted_password
         db_session.add(newuser)
         db_session.commit()
         session['username'] = requested_username
@@ -115,11 +119,14 @@ def logout():
 def login():
   if request.method == 'POST':
     usrName = request.form.get('username')
-    password = request.form.get('password')
+    hh = hashlib.new('md5')
+    usr_psswd = bytes(request.form.get('password'),'utf-8')
+    hh.update(usr_psswd)
+    encrypted_password = hh.hexdigest()
     if usrName and password:
       user = Users.query.filter_by(username = usrName).first()
       if user:
-        if user.password == password:
+        if user.password == encrypted_password:
           session['username'] = usrName
           return redirect("/")
         else:

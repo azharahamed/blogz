@@ -55,7 +55,6 @@ class Users(db.Model):
 @app.before_request
 def require_login():
   not_allowed_routes=['logout', 'newpost', 'editpost', 'addblog' ] 
-  print("The current end point is ",request.endpoint)
   if request.endpoint in not_allowed_routes and ('username' not in session):
     return redirect('/login')
 
